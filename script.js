@@ -35,20 +35,38 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 function toggleMobileMenu() {
   const navLinks = document.querySelector(".nav-links");
   const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const icon = mobileMenuBtn.querySelector("i");
 
   navLinks.classList.toggle("active");
-  mobileMenuBtn.classList.toggle("active");
 
   // Cambiar el ícono del botón
-  const icon = mobileMenuBtn.querySelector("i");
   if (navLinks.classList.contains("active")) {
     icon.classList.remove("fa-bars");
     icon.classList.add("fa-times");
+    // Prevenir el scroll del body cuando el menú está abierto
+    document.body.style.overflow = "hidden";
   } else {
     icon.classList.remove("fa-times");
     icon.classList.add("fa-bars");
+    // Restaurar el scroll del body
+    document.body.style.overflow = "auto";
   }
 }
+
+// Cerrar menú al hacer clic fuera de él
+document.addEventListener("click", function (e) {
+  const navLinks = document.querySelector(".nav-links");
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+  if (
+    window.innerWidth <= 768 &&
+    navLinks.classList.contains("active") &&
+    !e.target.closest(".nav-links") &&
+    !e.target.closest(".mobile-menu-btn")
+  ) {
+    toggleMobileMenu();
+  }
+});
 
 // Form submission handler
 document
