@@ -22,9 +22,33 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         top: targetElement.offsetTop - 80,
         behavior: "smooth",
       });
+
+      // Cerrar el menú móvil después de hacer clic en un enlace
+      if (window.innerWidth <= 768) {
+        toggleMobileMenu();
+      }
     }
   });
 });
+
+// Mobile menu functionality
+function toggleMobileMenu() {
+  const navLinks = document.querySelector(".nav-links");
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+  navLinks.classList.toggle("active");
+  mobileMenuBtn.classList.toggle("active");
+
+  // Cambiar el ícono del botón
+  const icon = mobileMenuBtn.querySelector("i");
+  if (navLinks.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-times");
+  } else {
+    icon.classList.remove("fa-times");
+    icon.classList.add("fa-bars");
+  }
+}
 
 // Form submission handler
 document
@@ -90,4 +114,9 @@ function createParticles() {
 document.addEventListener("DOMContentLoaded", function () {
   // Create particle effect
   createParticles();
+
+  // Add event listener to mobile menu button
+  document
+    .querySelector(".mobile-menu-btn")
+    .addEventListener("click", toggleMobileMenu);
 });

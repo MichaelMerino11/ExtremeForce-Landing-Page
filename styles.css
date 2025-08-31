@@ -698,62 +698,43 @@ footer {
   }
 }
 
-.cta-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  max-width: 500px;
-  margin: 0 auto;
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
 }
 
-.form-group {
-  position: relative;
-  width: 100%;
-}
-
-.cta-form input {
-  padding: 15px 25px;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  outline: none;
-  transition: var(--transition);
-}
-
-.confirmation-message {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--primary);
-  border-radius: 4px;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: var(--transition);
-  z-index: 10;
-}
-
-.confirmation-message.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Ajustes responsivos */
 @media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .testimonial-container {
+    padding: 30px 20px;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+
   .cta-form {
     flex-direction: column;
     align-items: center;
@@ -762,5 +743,52 @@ footer {
   .cta-form input {
     width: 100%;
     max-width: 400px;
+  }
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--darker);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    margin: 20px 0;
+  }
+
+  .header-container .btn {
+    display: none;
   }
 }
